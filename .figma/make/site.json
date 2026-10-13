@@ -1,0 +1,10 @@
+{
+  "description": "Create stunning, customizable digital wedding invitations with a premium sky blue aesthetic, perfect for modern couples seeking elegance and romance.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
