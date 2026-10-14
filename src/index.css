@@ -157,6 +157,12 @@ a { color: inherit; text-decoration: none; }
 .gallery-item--guest .gallery-remove { position: absolute; top: 10px; right: 10px; z-index: 2; display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: rgba(55,68,56,.82); color: white; font-size: 20px; line-height: 1; }
 .camera-count { margin: -8px 0 0; color: var(--slate); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
 .camera-wall-link { color: var(--navy); border-bottom: 1px solid var(--sky); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.guest-photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 980px; margin: 60px auto 0; }
+.guest-photo-card { margin: 0; overflow: hidden; border: 1px solid var(--baby); background: var(--white); }
+.guest-photo-card > button { display: block; width: 100%; height: 220px; padding: 0; border: 0; background: var(--baby); }
+.guest-photo-card img { width: 100%; height: 100%; object-fit: cover; }
+.guest-photo-card figcaption { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px; color: var(--slate); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.guest-photo-card figcaption button { padding: 0; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--slate); font-size: 9px; text-transform: uppercase; }
 
 .guest-page { min-height: 100vh; background: var(--ice); }
 .guest-page-header { display: flex; align-items: center; justify-content: space-between; padding: 24px max(5vw, calc((100vw - 1180px) / 2)); border-bottom: 1px solid var(--line); background: var(--white); }
@@ -324,6 +330,8 @@ a { color: inherit; text-decoration: none; }
   .guest-page-intro { padding-top: 80px; }
   .guest-wall { grid-template-columns: 1fr 1fr; gap: 9px; padding-inline: 9px; }
   .guest-wall figure, .guest-wall img { min-height: 220px; }
+  .guest-photo-grid { grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 40px; }
+  .guest-photo-card > button { height: 180px; }
   .music-player { right: 12px; bottom: 12px; left: 12px; justify-content: space-between; }
   .music-player div { min-width: 0; }
   .music-embed { width: 1px; height: 1px; }

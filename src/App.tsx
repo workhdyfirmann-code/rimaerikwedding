@@ -391,13 +391,6 @@ export default function App() {
       <section className="gallery section" id="gallery">
         <SectionTitle eyebrow="MOMEN KITA" title="Potongan kisah kita" intro="Kumpulan momen sederhana, tawa bahagia, dan kenangan yang akan kami bawa selamanya." />
         <div className="gallery-grid">
-          {guestPhotos.map((photo, index) => (
-            <div className="gallery-item gallery-item--guest" key={`${photo.slice(0, 24)}-${index}`}>
-              <button onClick={() => setLightbox(photo)} aria-label={`Buka foto tamu ${index + 1}`}><img src={photo} alt={`Foto tamu ${index + 1} di lokasi acara`} /></button>
-              <span>Foto Tamu</span>
-              <button className="gallery-remove" onClick={() => removeGuestPhoto(photo)} aria-label="Hapus foto tamu">×</button>
-            </div>
-          ))}
           {gallery.map((photo, index) => (
             <button key={photo} className={`gallery-item gallery-item--${index + 1}`} onClick={() => setLightbox(photo)} aria-label={`Buka foto galeri ${index + 1}`}>
               <img src={photo} alt={`Momen Rima dan Erik ${index + 1}`} loading="lazy" />
@@ -469,13 +462,21 @@ export default function App() {
       </section>
 
       <section className="guest-camera section">
-        <SectionTitle eyebrow="ABADIKAN MOMEN" title="Simpan momen bersama kami" intro="Akses kamera untuk mengabadikan momen di lokasi acara dan tambahkan ke galeri undangan ini." />
+        <SectionTitle eyebrow="DINDING FOTO TAMU" title="Simpan momen bersama kami" intro="Ambil foto di lokasi acara. Semua foto tamu akan tampil khusus di section ini." />
         <div className="camera-card">
           {guestPhotos[0] ? <img src={guestPhotos[0]} alt="Pratinjau foto tamu" /> : <div className="camera-empty"><span>+</span><p>Belum ada foto</p></div>}
           <button className="button camera-button" type="button" onClick={openCamera}>{guestPhotos.length ? "Ambil Foto Lain" : "Akses Kamera"}</button>
           <a className="camera-wall-link" href="/foto-tamu">Buka halaman foto tamu</a>
           {guestPhotos.length > 0 && <p className="camera-count">{guestPhotos.length} foto sudah dibagikan ke layar</p>}
         </div>
+        {guestPhotos.length > 0 && <div className="guest-photo-grid">
+          {guestPhotos.map((photo, index) => (
+            <figure className="guest-photo-card" key={`${photo.slice(0, 24)}-${index}`}>
+              <button onClick={() => setLightbox(photo)} aria-label={`Buka foto tamu ${index + 1}`}><img src={photo} alt={`Foto tamu ${index + 1} di lokasi acara`} /></button>
+              <figcaption><span>Foto tamu {index + 1}</span><button onClick={() => removeGuestPhoto(photo)} aria-label="Hapus foto tamu">Hapus</button></figcaption>
+            </figure>
+          ))}
+        </div>}
       </section>
 
       <footer className="closing">
