@@ -165,7 +165,7 @@ export default function App() {
         <Flower className="cover-flower cover-flower--right" />
         <div className="cover-content">
           <Monogram />
-          <p className="cover-kicker">THE WEDDING OF</p>
+          <p className="cover-kicker">UNDANGAN PERNIKAHAN</p>
           <h1>Rima <i>&</i> Erik</h1>
           <div className="date-rule"><span />26 · 12 · 2026<span /></div>
           <div className="guest">
@@ -173,28 +173,28 @@ export default function App() {
             <strong>{guestName}</strong>
           </div>
           <button className="button button--light" onClick={openInvitation}>
-            Open Invitation <Icon name="arrow" />
+            Buka Undangan <Icon name="arrow" />
           </button>
         </div>
-        <div className="scroll-note">A celebration under the blue sky</div>
+        <div className="scroll-note">Sebuah perayaan penuh cinta</div>
       </section>
 
       <nav className="nav">
         <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Kembali ke atas"><Monogram /></button>
         <div className="nav-links">
-          <a href="#home">01 Home</a>
+          <a href="#home">01 Beranda</a>
           <a href="#story">02 Cerita Kita</a>
-          <a href="#events">03 When & Where</a>
-          <a href="#gallery">04 Gallery</a>
-          <a href="#rsvp">05 RSVP</a>
-          <a href="#wishes">06 Wishes</a>
+          <a href="#events">03 Waktu & Tempat</a>
+          <a href="#gallery">04 Galeri</a>
+          <a href="#rsvp">05 Konfirmasi</a>
+          <a href="#wishes">06 Ucapan</a>
         </div>
         <a className="nav-rsvp" href="#rsvp">Konfirmasi</a>
       </nav>
 
       <div className="music-player">
         <span className="music-note">♪</span>
-        <div><strong>Backsound</strong><span>Wedding soundtrack</span></div>
+        <div><strong>Musik</strong><span>Musik pengiring</span></div>
         <iframe
           className="music-embed music-embed--audio"
           src={`https://www.youtube.com/embed/ZeFpigRaXbI?loop=1&playlist=ZeFpigRaXbI&controls=0&autoplay=${opened ? "1" : "0"}`}
@@ -207,11 +207,11 @@ export default function App() {
       <section className="hero" id="home">
         <Flower className="hero-flower" />
         <div className="hero-copy">
-          <span className="eyebrow">SAVE THE DATE</span>
-          <p className="script">We're getting married</p>
+          <span className="eyebrow">CATAT TANGGALNYA</span>
+          <p className="script">Kami akan menikah</p>
           <h2>Rima <i>&</i><br />Erik</h2>
           <p className="hero-date">SABTU, 26 DESEMBER 2026 · JAKARTA</p>
-          <p className="hero-quote">“And of His signs is that He created for you from yourselves mates that you may find tranquility in them.”</p>
+          <p className="hero-quote">“Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu agar kamu merasa tenteram kepadanya.”<br /><small>QS. Ar-Rum: 21</small></p>
           <div className="countdown" aria-label="Hitung mundur acara">
             {Object.entries(days).map(([label, value]) => (
               <div key={label}><strong>{String(value).padStart(2, "0")}</strong><span>{label}</span></div>
@@ -225,16 +225,16 @@ export default function App() {
       </section>
 
       <section className="couple section">
-        <SectionTitle eyebrow="BRIDE & GROOM" title="Two souls, one journey" intro="Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami." />
+        <SectionTitle eyebrow="MEMPELAI" title="Dua jiwa, satu ikatan" intro="Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami." />
         <div className="profiles">
           <article className="profile">
             <div className="profile-image"><img src={photos.first} alt="Potret Erik" /><span>01</span></div>
-            <div><p className="script">The Groom</p><h3>Erik</h3><p>Putra dari<br /><strong>Fulan</strong><br />& <strong>Bapak Fulan</strong></p><a href="#gallery">@erik</a></div>
+            <div><p className="script">Mempelai Pria</p><h3>Erik</h3><p>Putra dari<br /><strong>Fulan</strong><br />& <strong>Bapak Fulan</strong></p><a href="#gallery">@erik</a></div>
           </article>
           <div className="profile-and">&</div>
           <article className="profile profile--reverse">
             <div className="profile-image"><img src={photos.second} alt="Potret Rima" /><span>02</span></div>
-            <div><p className="script">The Bride</p><h3>Rima</h3><p>Putri dari<br /><strong>Ibu Rusminah</strong><br />& <strong>Bapak Didi Rasmadi Konter</strong></p><a href="#gallery">@rima</a></div>
+            <div><p className="script">Mempelai Wanita</p><h3>Rima</h3><p>Putri dari<br /><strong>Ibu Rusminah</strong><br />& <strong>Bapak Didi Rasmadi Konter</strong></p><a href="#gallery">@rima</a></div>
           </article>
         </div>
       </section>
@@ -253,10 +253,10 @@ export default function App() {
            <SectionTitle eyebrow="CERITA KITA" title="Kisah yang ditulis bersama" intro="Setiap kisah memiliki awal. Kisah kami tumbuh perlahan, menjadi rumah, dan kini menuju selamanya." />
           <div className="timeline">
             {[
-              ["September 2021", "The First Hello", "Sebuah pertemuan sederhana di antara teman-teman, yang diam-diam mengubah arah hidup kami."],
-              ["May 2023", "Falling in Love", "Percakapan panjang, perjalanan singkat, dan rasa nyaman yang semakin berarti."],
-              ["December 2025", "The Promise", "Di bawah langit senja, satu pertanyaan membawa kami pada sebuah janji seumur hidup."],
-              ["December 2026", "Forever Begins", "Kini kami siap memulai babak baru, bersama orang-orang terkasih di sisi kami."],
+               ["September 2021", "Pertama Berkenalan", "Sebuah pertemuan sederhana di antara teman-teman, yang diam-diam mengubah arah hidup kami."],
+               ["Mei 2023", "Jatuh Cinta", "Percakapan panjang, perjalanan singkat, dan rasa nyaman yang semakin berarti."],
+               ["Desember 2025", "Sebuah Janji", "Di bawah langit senja, satu pertanyaan membawa kami pada sebuah janji seumur hidup."],
+               ["Desember 2026", "Selamanya Dimulai", "Kini kami siap memulai babak baru, bersama orang-orang terkasih di sisi kami."],
             ].map(([date, title, copy], index) => (
               <article key={date}><span>{String(index + 1).padStart(2, "0")}</span><div><time>{date}</time><h3>{title}</h3><p>{copy}</p></div></article>
             ))}
@@ -265,28 +265,28 @@ export default function App() {
       </section>
 
       <section className="events section" id="events">
-        <SectionTitle eyebrow="SAVE THE DATE" title="The Wedding Day" intro="Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir dan memberikan doa restu." />
+        <SectionTitle eyebrow="CATAT TANGGALNYA" title="Hari Pernikahan" intro="Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir dan memberikan doa restu." />
         <div className="event-date-display"><span>Saturday</span><strong>26</strong><span>December 2026</span></div>
         <div className="event-grid">
           {[
-            { number: "01", name: "Akad Nikah", time: "08.00 – 10.00 WIB", place: "Mesjid Attaufiq", address: "Tempat akad nikah", map: "https://www.google.com/maps/search/?api=1&query=Mesjid+Attaufiq" },
-            { number: "02", name: "Resepsi", time: "11.00 – 14.00 WIB", place: "Rumah Mempelai Wanita", address: "Tempat resepsi", map: "https://www.google.com/maps/search/?api=1&query=Rumah+Mempelai+Wanita" },
+            { number: "01", name: "Akad Nikah", time: "08.00 – 10.00 WIB", place: "Mesjid Attaufiq", address: "RJ34+X9V, Jl. Dipati Unus, RT.002/RW.001, Cibodas, Kec. Cibodas, Kota Tangerang, Banten 15138", map: "https://www.google.com/maps/search/?api=1&query=RJ34%2BX9V%2C%20Jl.%20Dipati%20Unus%2C%20Cibodas%2C%20Kota%20Tangerang%2C%20Banten%2015138" },
+            { number: "02", name: "Resepsi", time: "11.00 – 14.00 WIB", place: "Rumah Mempelai Wanita", address: "RJ34+X9V, Jl. Dipati Unus, RT.002/RW.001, Cibodas, Kec. Cibodas, Kota Tangerang, Banten 15138", map: "https://www.google.com/maps/search/?api=1&query=RJ34%2BX9V%2C%20Jl.%20Dipati%20Unus%2C%20Cibodas%2C%20Kota%20Tangerang%2C%20Banten%2015138" },
           ].map((event) => (
             <article className="event-card" key={event.name}>
               <span className="event-number">{event.number}</span>
-              <p className="script">The Ceremony</p>
+              <p className="script">Rangkaian Acara</p>
               <h3>{event.name}</h3>
               <div className="event-detail"><Icon name="calendar" /><span>Sabtu, 26 Desember 2026</span></div>
               <div className="event-detail"><Icon name="clock" /><span>{event.time}</span></div>
-              <div className="event-detail"><Icon name="pin" /><span><strong>{event.place}</strong>{event.address}</span></div>
-              <a className="button button--outline" href={event.map} target="_blank" rel="noreferrer">View Location <Icon name="arrow" /></a>
+              <div className="event-detail"><Icon name="pin" /><a className="event-address" href={event.map} target="_blank" rel="noreferrer"><strong>{event.place}</strong>{event.address}</a></div>
+              <a className="button button--outline" href={event.map} target="_blank" rel="noreferrer">Lihat Lokasi <Icon name="arrow" /></a>
             </article>
           ))}
         </div>
       </section>
 
       <section className="gallery section" id="gallery">
-        <SectionTitle eyebrow="OUR MOMENTS" title="Pieces of our story" intro="A collection of quiet moments, happy laughter, and memories we'll carry into forever." />
+        <SectionTitle eyebrow="MOMEN KITA" title="Potongan kisah kita" intro="Kumpulan momen sederhana, tawa bahagia, dan kenangan yang akan kami bawa selamanya." />
         <div className="gallery-grid">
           {guestPhoto && (
             <button className="gallery-item gallery-item--guest" onClick={() => setLightbox(guestPhoto)} aria-label="Buka foto tamu">
@@ -305,20 +305,20 @@ export default function App() {
 
       <section className="rsvp section" id="rsvp">
         <div className="rsvp-intro">
-          <span className="eyebrow">KINDLY RESPOND</span>
-          <h2>Will you join us?</h2>
+          <span className="eyebrow">KONFIRMASI KEHADIRAN</span>
+          <h2>Berkenan hadir bersama kami?</h2>
           <p>Kehadiran dan doa Anda adalah hadiah terindah bagi perjalanan baru kami.</p>
           <div className="rsvp-date"><strong>26</strong><span>December<br />2026</span></div>
         </div>
         {submitted ? (
-          <div className="rsvp-success"><Monogram /><h3>Thank you</h3><p>Konfirmasi Anda telah kami terima. Sampai jumpa di hari bahagia kami.</p><button className="button" onClick={() => setSubmitted(false)}>Edit Response</button></div>
+          <div className="rsvp-success"><Monogram /><h3>Terima kasih</h3><p>Konfirmasi Anda telah kami terima. Sampai jumpa di hari bahagia kami.</p><button className="button" onClick={() => setSubmitted(false)}>Ubah Jawaban</button></div>
         ) : (
           <form className="rsvp-form" onSubmit={submitRsvp}>
             <label>Nama lengkap<input required name="name" placeholder="Tuliskan nama Anda" /></label>
             <label>Konfirmasi kehadiran<select name="attendance" required defaultValue=""><option value="" disabled>Pilih jawaban</option><option>Ya, saya akan hadir</option><option>Maaf, belum dapat hadir</option></select></label>
             <label>Jumlah tamu<select name="guests" defaultValue="1"><option>1 orang</option><option>2 orang</option><option>3 orang</option><option>4 orang</option></select></label>
             <label>Ucapan & doa<textarea name="message" rows={4} placeholder="Tinggalkan pesan hangat untuk kami..." /></label>
-            <button className="button" type="submit">Send Confirmation <Icon name="arrow" /></button>
+            <button className="button" type="submit">Kirim Konfirmasi <Icon name="arrow" /></button>
           </form>
         )}
       </section>
@@ -338,25 +338,25 @@ export default function App() {
       </section>
 
       <section className="gift section">
-        <SectionTitle eyebrow="A TOKEN OF LOVE" title="Wedding Gift" intro="Doa restu Anda sudah lebih dari cukup. Namun jika memberi adalah ungkapan kasih, kami dengan tulus menerimanya." />
+        <SectionTitle eyebrow="TANDA KASIH" title="Hadiah Pernikahan" intro="Doa restu Anda sudah lebih dari cukup. Namun jika memberi adalah ungkapan kasih, kami dengan tulus menerimanya." />
         <div className="gift-grid">
           {[
             ["BCA", "Rima", "1234 5678 9012"],
             ["Mandiri", "Erik", "0987 6543 2101"],
           ].map(([bank, name, account]) => (
             <article className="gift-card" key={bank}>
-              <div><Icon name="gift" /><span>Wedding Gift</span></div>
+              <div><Icon name="gift" /><span>Hadiah Pernikahan</span></div>
               <strong className="bank">{bank}</strong><p>{name}</p><h3>{account}</h3>
-              <button onClick={() => copyAccount(account.replaceAll(" ", ""))}><Icon name="copy" />{copied === account.replaceAll(" ", "") ? "Copied" : "Copy number"}</button>
+              <button onClick={() => copyAccount(account.replaceAll(" ", ""))}><Icon name="copy" />{copied === account.replaceAll(" ", "") ? "Tersalin" : "Salin nomor"}</button>
             </article>
           ))}
           <article className="gift-card gift-card--address">
-            <div><Icon name="pin" /><span>Send a Gift</span></div>
-            <h3>Delivery Address</h3>
+            <div><Icon name="pin" /><span>Kirim Hadiah</span></div>
+            <h3>Alamat Pengiriman</h3>
             <p>Jl. Kemang Timur No. 28<br />Jakarta Selatan, 12730<br /><strong>Penerima: Erik · 0812 3456 7890</strong></p>
           </article>
           <article className="gift-card gift-card--qris">
-            <div><Icon name="gift" /><span>Scan & Give</span></div>
+            <div><Icon name="gift" /><span>Pindai & Beri</span></div>
             <h3>QRIS</h3>
             {qrisPhoto ? <img className="qris-image" src={qrisPhoto} alt="QRIS untuk hadiah pernikahan" /> : <div className="qris-empty">QRIS<br /><small>Upload kode QR</small></div>}
             <label className="upload-link">{qrisPhoto ? "Ganti QRIS" : "Tambah QRIS"}<input type="file" accept="image/*" onChange={handleQrisUpload} /></label>
@@ -365,7 +365,7 @@ export default function App() {
       </section>
 
       <section className="guest-camera section">
-        <SectionTitle eyebrow="CAPTURE THE MOMENT" title="Simpan momen bersama kami" intro="Akses kamera untuk mengabadikan momen di lokasi acara dan tambahkan ke galeri undangan ini." />
+        <SectionTitle eyebrow="ABADIKAN MOMEN" title="Simpan momen bersama kami" intro="Akses kamera untuk mengabadikan momen di lokasi acara dan tambahkan ke galeri undangan ini." />
         <div className="camera-card">
           {guestPhoto ? <img src={guestPhoto} alt="Pratinjau foto tamu" /> : <div className="camera-empty"><span>+</span><p>Belum ada foto</p></div>}
           <button className="button camera-button" type="button" onClick={openCamera}>{guestPhoto ? "Ambil Foto Lain" : "Akses Kamera"}</button>
@@ -378,8 +378,8 @@ export default function App() {
         <Flower className="closing-flower" />
         <div className="closing-copy">
           <Monogram />
-          <span className="eyebrow">WITH LOVE & GRATITUDE</span>
-          <h2>Thank you for being<br />part of our story.</h2>
+          <span className="eyebrow">DENGAN CINTA & SYUKUR</span>
+          <h2>Terima kasih telah<br />menjadi bagian dari kisah kami.</h2>
           <p>Merupakan kebahagiaan bagi kami untuk berbagi hari istimewa ini bersama Anda.</p>
           <h3>Rima <i>&</i> Erik</h3>
           <span>26 · DECEMBER · 2026</span>
@@ -397,7 +397,7 @@ export default function App() {
         <div className="camera-modal" role="dialog" aria-modal="true" aria-label="Kamera foto">
           <div className="camera-modal-card">
             <button className="camera-close" onClick={closeCamera} aria-label="Tutup kamera">×</button>
-            <span className="eyebrow">CAMERA</span>
+            <span className="eyebrow">KAMERA</span>
             <h2>Ambil Momen</h2>
             {cameraError ? <p className="camera-error">{cameraError}</p> : <video ref={videoRef} className="camera-video" autoPlay muted playsInline />}
             {!cameraError && <button className="button" onClick={capturePhoto}>Ambil Foto</button>}
