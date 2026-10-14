@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 
 const photos = {
-  first: "/rimadanerik/A400368F-96D6-40EE-9D9D-1BB0F4C2C670.JPG",
-  second: "/rimadanerik/79D45A2A-726C-486C-BFE8-CC36360C1AD6.JPG",
+  first: "/rimadanerik/potohasya.JPG",
+  second: "/rimadanerik/potohasya.JPG",
 };
 
 const gallery = [photos.first, photos.second];
