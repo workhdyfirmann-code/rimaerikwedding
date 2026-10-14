@@ -6,6 +6,7 @@ const photos = {
 };
 
 const gallery = [photos.first, photos.second];
+const guestPhotosKey = "rima-erik-guest-photos";
 
 function Monogram() {
   return <span className="monogram">R·E</span>;
@@ -57,7 +58,7 @@ export default function App() {
     || "Nama Tamu";
   const [opened, setOpened] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
-  const [guestPhoto, setGuestPhoto] = useState<string | null>(null);
+  const [guestPhotos, setGuestPhotos] = useState<string[]>([]);
   const [qrisPhoto, setQrisPhoto] = useState<string | null>(null);
   const [cameraOpen, setCameraOpen] = useState(false);
   const [cameraError, setCameraError] = useState("");
@@ -67,6 +68,20 @@ export default function App() {
   const [days, setDays] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
+
+  useEffect(() => {
+    try {
+      const savedPhotos = JSON.parse(localStorage.getItem(guestPhotosKey) || "[]");
+      if (Array.isArray(savedPhotos)) setGuestPhotos(savedPhotos.filter((photo): photo is string => typeof photo === "string"));
+    } catch {
+      localStorage.removeItem(guestPhotosKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (guestPhotos.length) localStorage.setItem(guestPhotosKey, JSON.stringify(guestPhotos));
+    else localStorage.removeItem(guestPhotosKey);
+  }, [guestPhotos]);
 
   useEffect(() => {
     if (!cameraOpen) return;
@@ -152,9 +167,11 @@ export default function App() {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     canvas.getContext("2d")?.drawImage(video, 0, 0);
-    setGuestPhoto(canvas.toDataURL("image/jpeg", 0.9));
+    setGuestPhotos((current) => [canvas.toDataURL("image/jpeg", 0.9), ...current]);
     closeCamera();
   };
+
+  const removeGuestPhoto = (photo: string) => setGuestPhotos((current) => current.filter((item) => item !== photo));
 
   return (
     <main>
@@ -288,12 +305,13 @@ export default function App() {
       <section className="gallery section" id="gallery">
         <SectionTitle eyebrow="MOMEN KITA" title="Potongan kisah kita" intro="Kumpulan momen sederhana, tawa bahagia, dan kenangan yang akan kami bawa selamanya." />
         <div className="gallery-grid">
-          {guestPhoto && (
-            <button className="gallery-item gallery-item--guest" onClick={() => setLightbox(guestPhoto)} aria-label="Buka foto tamu">
-              <img src={guestPhoto} alt="Foto tamu di lokasi acara" />
+          {guestPhotos.map((photo, index) => (
+            <div className="gallery-item gallery-item--guest" key={`${photo.slice(0, 24)}-${index}`}>
+              <button onClick={() => setLightbox(photo)} aria-label={`Buka foto tamu ${index + 1}`}><img src={photo} alt={`Foto tamu ${index + 1} di lokasi acara`} /></button>
               <span>Foto Tamu</span>
-            </button>
-          )}
+              <button className="gallery-remove" onClick={() => removeGuestPhoto(photo)} aria-label="Hapus foto tamu">×</button>
+            </div>
+          ))}
           {gallery.map((photo, index) => (
             <button key={photo} className={`gallery-item gallery-item--${index + 1}`} onClick={() => setLightbox(photo)} aria-label={`Buka foto galeri ${index + 1}`}>
               <img src={photo} alt={`Momen Rima dan Erik ${index + 1}`} loading="lazy" />
@@ -367,9 +385,9 @@ export default function App() {
       <section className="guest-camera section">
         <SectionTitle eyebrow="ABADIKAN MOMEN" title="Simpan momen bersama kami" intro="Akses kamera untuk mengabadikan momen di lokasi acara dan tambahkan ke galeri undangan ini." />
         <div className="camera-card">
-          {guestPhoto ? <img src={guestPhoto} alt="Pratinjau foto tamu" /> : <div className="camera-empty"><span>+</span><p>Belum ada foto</p></div>}
-          <button className="button camera-button" type="button" onClick={openCamera}>{guestPhoto ? "Ambil Foto Lain" : "Akses Kamera"}</button>
-          {guestPhoto && <button className="camera-remove" onClick={() => setGuestPhoto(null)}>Hapus foto</button>}
+          {guestPhotos[0] ? <img src={guestPhotos[0]} alt="Pratinjau foto tamu" /> : <div className="camera-empty"><span>+</span><p>Belum ada foto</p></div>}
+          <button className="button camera-button" type="button" onClick={openCamera}>{guestPhotos.length ? "Ambil Foto Lain" : "Akses Kamera"}</button>
+          {guestPhotos.length > 0 && <p className="camera-count">{guestPhotos.length} foto sudah dibagikan ke layar</p>}
         </div>
       </section>
 
