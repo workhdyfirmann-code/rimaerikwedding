@@ -266,7 +266,7 @@ export default function App() {
 
       <section className="events section" id="events">
         <SectionTitle eyebrow="CATAT TANGGALNYA" title="Hari Pernikahan" intro="Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir dan memberikan doa restu." />
-        <div className="event-date-display"><span>Saturday</span><strong>26</strong><span>December 2026</span></div>
+        <div className="event-date-display"><span>Sabtu</span><strong>26</strong><span>Desember 2026</span></div>
         <div className="event-grid">
           {[
             { number: "01", name: "Akad Nikah", time: "08.00 – 10.00 WIB", place: "Mesjid Attaufiq", address: "RJ34+X9V, Jl. Dipati Unus, RT.002/RW.001, Cibodas, Kec. Cibodas, Kota Tangerang, Banten 15138", map: "https://www.google.com/maps/search/?api=1&query=RJ34%2BX9V%2C%20Jl.%20Dipati%20Unus%2C%20Cibodas%2C%20Kota%20Tangerang%2C%20Banten%2015138" },
@@ -308,7 +308,7 @@ export default function App() {
           <span className="eyebrow">KONFIRMASI KEHADIRAN</span>
           <h2>Berkenan hadir bersama kami?</h2>
           <p>Kehadiran dan doa Anda adalah hadiah terindah bagi perjalanan baru kami.</p>
-          <div className="rsvp-date"><strong>26</strong><span>December<br />2026</span></div>
+          <div className="rsvp-date"><strong>26</strong><span>Desember<br />2026</span></div>
         </div>
         {submitted ? (
           <div className="rsvp-success"><Monogram /><h3>Terima kasih</h3><p>Konfirmasi Anda telah kami terima. Sampai jumpa di hari bahagia kami.</p><button className="button" onClick={() => setSubmitted(false)}>Ubah Jawaban</button></div>
@@ -382,7 +382,7 @@ export default function App() {
           <h2>Terima kasih telah<br />menjadi bagian dari kisah kami.</h2>
           <p>Merupakan kebahagiaan bagi kami untuk berbagi hari istimewa ini bersama Anda.</p>
           <h3>Rima <i>&</i> Erik</h3>
-          <span>26 · DECEMBER · 2026</span>
+          <span>26 · DESEMBER · 2026</span>
         </div>
         <div className="footer-line"><span>Made with love</span><span>© 2026 R&E Wedding</span></div>
       </footer>
