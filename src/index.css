@@ -156,6 +156,24 @@ a { color: inherit; text-decoration: none; }
 .gallery-item--guest > button:first-child { width: 100%; height: 100%; padding: 0; border: 0; background: transparent; }
 .gallery-item--guest .gallery-remove { position: absolute; top: 10px; right: 10px; z-index: 2; display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: rgba(55,68,56,.82); color: white; font-size: 20px; line-height: 1; }
 .camera-count { margin: -8px 0 0; color: var(--slate); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.camera-wall-link { color: var(--navy); border-bottom: 1px solid var(--sky); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+
+.guest-page { min-height: 100vh; background: var(--ice); }
+.guest-page-header { display: flex; align-items: center; justify-content: space-between; padding: 24px max(5vw, calc((100vw - 1180px) / 2)); border-bottom: 1px solid var(--line); background: var(--white); }
+.guest-page-header .monogram { font-size: 30px; }
+.guest-page-back { border-bottom: 1px solid var(--sky); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.guest-page-intro { max-width: 760px; margin: 0 auto; padding: 110px 24px 70px; text-align: center; }
+.guest-page-intro h1 { margin: 18px 0; font-size: clamp(54px, 8vw, 100px); line-height: .88; }
+.guest-page-intro h1 i { color: var(--slate); font-weight: 400; }
+.guest-page-intro p { max-width: 480px; margin: 0 auto 28px; color: var(--slate); line-height: 1.8; }
+.guest-wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1180px; margin: 0 auto; padding: 0 24px 110px; }
+.guest-wall figure { position: relative; min-height: 300px; margin: 0; overflow: hidden; background: var(--baby); }
+.guest-wall figure:nth-child(3n + 1) { transform: translateY(28px); }
+.guest-wall img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; }
+.guest-wall figcaption { position: absolute; right: 12px; bottom: 12px; padding: 8px 12px; background: rgba(255,253,248,.9); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+.guest-wall-empty { grid-column: 1 / -1; display: grid; place-items: center; gap: 10px; min-height: 300px; border: 1px dashed var(--sky); color: var(--slate); text-align: center; }
+.guest-wall-empty strong { color: var(--navy); font-family: var(--serif); font-size: 34px; font-weight: 500; }
+.guest-wall-empty span { font-size: 11px; }
 .gallery-empty { grid-column: 1 / -1; display: grid; place-items: center; min-height: 320px; border: 1px dashed var(--sky); color: var(--slate); font-family: var(--serif); font-size: 30px; font-style: italic; text-align: center; }
 .gallery-empty small { font-family: var(--sans); font-size: 9px; font-style: normal; letter-spacing: .12em; text-transform: uppercase; }
 
@@ -300,6 +318,12 @@ a { color: inherit; text-decoration: none; }
   .closing-copy { padding: 70px 24px 100px; }
   .closing-copy h2 { font-size: 45px; }
   .footer-line { padding: 18px 22px; }
+  .guest-page-header { gap: 14px; padding: 18px 22px; }
+  .guest-page-header .eyebrow { font-size: 8px; letter-spacing: .16em; }
+  .guest-page-back { font-size: 8px; }
+  .guest-page-intro { padding-top: 80px; }
+  .guest-wall { grid-template-columns: 1fr 1fr; gap: 9px; padding-inline: 9px; }
+  .guest-wall figure, .guest-wall img { min-height: 220px; }
   .music-player { right: 12px; bottom: 12px; left: 12px; justify-content: space-between; }
   .music-player div { min-width: 0; }
   .music-embed { width: 1px; height: 1px; }

@@ -51,7 +51,92 @@ function Icon({ name }: { name: "calendar" | "clock" | "pin" | "gift" | "copy" |
   return <svg className="icon" viewBox="0 0 20 20" aria-hidden="true">{paths[name]}</svg>;
 }
 
+function GuestPhotoPage() {
+  const [photos, setPhotos] = useState<string[]>([]);
+  const [cameraOpen, setCameraOpen] = useState(false);
+  const [cameraError, setCameraError] = useState("");
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(guestPhotosKey) || "[]");
+      if (Array.isArray(saved)) setPhotos(saved.filter((photo): photo is string => typeof photo === "string"));
+    } catch {
+      localStorage.removeItem(guestPhotosKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!cameraOpen) return;
+    let active = true;
+    navigator.mediaDevices?.getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: false })
+      .then((stream) => {
+        if (!active) {
+          stream.getTracks().forEach((track) => track.stop());
+          return;
+        }
+        streamRef.current = stream;
+        if (videoRef.current) videoRef.current.srcObject = stream;
+      })
+      .catch(() => setCameraError("Kamera tidak dapat diakses. Pastikan izin kamera telah diberikan."));
+    return () => {
+      active = false;
+      streamRef.current?.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
+    };
+  }, [cameraOpen]);
+
+  const savePhotos = (nextPhotos: string[]) => {
+    setPhotos(nextPhotos);
+    localStorage.setItem(guestPhotosKey, JSON.stringify(nextPhotos));
+  };
+
+  const capturePhoto = () => {
+    const video = videoRef.current;
+    if (!video || !video.videoWidth) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext("2d")?.drawImage(video, 0, 0);
+    savePhotos([canvas.toDataURL("image/jpeg", 0.9), ...photos]);
+    setCameraOpen(false);
+  };
+
+  return (
+    <main className="guest-page">
+      <header className="guest-page-header">
+        <a className="monogram" href="/">R·E</a>
+        <span className="eyebrow">MOMEN PERNIKAHAN RIMA & ERIK</span>
+        <a className="guest-page-back" href="/">Kembali ke undangan</a>
+      </header>
+      <section className="guest-page-intro">
+        <span className="eyebrow">DINDING FOTO TAMU</span>
+        <h1>Abadikan momen<br /><i>bersama kami</i></h1>
+        <p>Ambil foto di lokasi acara dan bagikan kebahagiaanmu. Foto akan tampil di halaman ini.</p>
+        <button className="button" onClick={() => { setCameraError(""); setCameraOpen(true); }}>Akses Kamera</button>
+      </section>
+      <section className="guest-wall" aria-live="polite">
+        {photos.length ? photos.map((photo, index) => (
+          <figure key={`${photo.slice(0, 24)}-${index}`}><img src={photo} alt={`Momen tamu ${index + 1}`} /><figcaption>Momen tamu {index + 1}</figcaption></figure>
+        )) : <div className="guest-wall-empty"><strong>Belum ada foto</strong><span>Jadilah yang pertama membagikan momen.</span></div>}
+      </section>
+      {cameraOpen && <div className="camera-modal" role="dialog" aria-modal="true" aria-label="Kamera foto tamu">
+        <div className="camera-modal-card">
+          <button className="camera-close" onClick={() => setCameraOpen(false)} aria-label="Tutup kamera">×</button>
+          <span className="eyebrow">KAMERA</span><h2>Ambil Momen</h2>
+          {cameraError ? <p className="camera-error">{cameraError}</p> : <video ref={videoRef} className="camera-video" autoPlay muted playsInline />}
+          {!cameraError && <button className="button" onClick={capturePhoto}>Ambil Foto</button>}
+          <button className="camera-remove" onClick={() => setCameraOpen(false)}>Batal</button>
+        </div>
+      </div>}
+    </main>
+  );
+}
+
 export default function App() {
+  if (window.location.pathname === "/foto-tamu") return <GuestPhotoPage />;
+
   const guestName = new URLSearchParams(window.location.search).get("to")
     || new URLSearchParams(window.location.search).get("name")
     || new URLSearchParams(window.location.search).get("guest")
@@ -205,6 +290,7 @@ export default function App() {
           <a href="#gallery">04 Galeri</a>
           <a href="#rsvp">05 Konfirmasi</a>
           <a href="#wishes">06 Ucapan</a>
+          <a href="/foto-tamu">07 Foto Tamu</a>
         </div>
         <a className="nav-rsvp" href="#rsvp">Konfirmasi</a>
       </nav>
@@ -387,6 +473,7 @@ export default function App() {
         <div className="camera-card">
           {guestPhotos[0] ? <img src={guestPhotos[0]} alt="Pratinjau foto tamu" /> : <div className="camera-empty"><span>+</span><p>Belum ada foto</p></div>}
           <button className="button camera-button" type="button" onClick={openCamera}>{guestPhotos.length ? "Ambil Foto Lain" : "Akses Kamera"}</button>
+          <a className="camera-wall-link" href="/foto-tamu">Buka halaman foto tamu</a>
           {guestPhotos.length > 0 && <p className="camera-count">{guestPhotos.length} foto sudah dibagikan ke layar</p>}
         </div>
       </section>
