@@ -206,6 +206,20 @@ export default function App() {
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const sections = document.querySelectorAll("main > section:not(.cover), .guest-page-intro, .guest-wall");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   const openInvitation = () => {
     setOpened(true);
     window.setTimeout(() => document.querySelector("#home")?.scrollIntoView({ behavior: "smooth" }), 350);
@@ -267,7 +281,7 @@ export default function App() {
         <Flower className="cover-flower cover-flower--right" />
         <div className="cover-content">
           <Monogram />
-          <p className="cover-kicker">UNDANGAN PERNIKAHAN</p>
+          <p className="cover-kicker">THE WEDDING OF</p>
           <h1>Rima <i>&</i> Erik</h1>
           <div className="date-rule"><span />26 · 12 · 2026<span /></div>
           <div className="guest">
@@ -278,7 +292,7 @@ export default function App() {
             Buka Undangan <Icon name="arrow" />
           </button>
         </div>
-        <div className="scroll-note">Sebuah perayaan penuh cinta</div>
+        <div className="scroll-note">Undangan Pernikahan</div>
       </section>
 
       <nav className="nav">
@@ -311,10 +325,10 @@ export default function App() {
         <Flower className="hero-flower" />
         <div className="hero-copy">
           <span className="eyebrow">CATAT TANGGALNYA</span>
-          <p className="script">Kami akan menikah</p>
+          <p className="script">Assalamu'alaikum Wr. Wb.</p>
           <h2>Rima <i>&</i><br />Erik</h2>
           <p className="hero-date">SABTU, 26 DESEMBER 2026 · JAKARTA</p>
-          <p className="hero-quote">“Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu agar kamu merasa tenteram kepadanya.”<br /><small>QS. Ar-Rum: 21</small></p>
+          <p className="hero-quote">“Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”<br /><small>QS. Ar-Rum: 21</small></p>
           <div className="countdown" aria-label="Hitung mundur acara">
             {Object.entries(days).map(([label, value]) => (
               <div key={label}><strong>{String(value).padStart(2, "0")}</strong><span>{label}</span></div>
@@ -328,7 +342,7 @@ export default function App() {
       </section>
 
       <section className="couple section">
-        <SectionTitle eyebrow="MEMPELAI" title="Dua jiwa, satu ikatan" intro="Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami." />
+        <SectionTitle eyebrow="MEMPELAI" title="Dua jiwa, satu ikatan" intro="Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan kami. Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir dan berbagi kebahagiaan bersama." />
         <div className="profiles">
           <article className="profile">
             <div className="profile-image"><img src={photos.first} alt="Potret Erik" /><span>01</span></div>
